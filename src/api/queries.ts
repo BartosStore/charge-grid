@@ -87,3 +87,23 @@ export function useAcknowledgeAlarm() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.alarms }),
   });
 }
+
+/* --------------------------------------------------------------- admin CRUD */
+
+export function useCrudMutations<T extends { id: string }>(resource: string, queryKey: readonly unknown[]) {
+  const queryClient = useQueryClient();
+  const onSuccess = () => queryClient.invalidateQueries({ queryKey });
+
+  const save = useMutation({
+    mutationFn: (item: T | Omit<T, 'id'>) =>
+      'id' in item && item.id
+        ? apiFetch<T>(`/${resource}/${item.id}`, { method: 'PUT', body: item })
+        : apiFetch<T>(`/${resource}`, { method: 'POST', body: item }),
+    onSuccess,
+  });
+  const remove = useMutation({
+    mutationFn: (id: string) => apiFetch<void>(`/${resource}/${id}`, { method: 'DELETE' }),
+    onSuccess,
+  });
+  return { save, remove };
+}

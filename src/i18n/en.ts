@@ -167,6 +167,13 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
     inMemory: 'Changes last until page reload',
     home: 'Hub',
     manage: 'Manage',
+    saved: 'Saved',
+    deleted: 'Deleted',
+    saveError: 'Saving failed.',
+    confirmDeleteTitle: 'Delete for good?',
+    confirmDelete: '"{{name}}" will be permanently removed.',
+    enabled: 'In service',
+    disabled: 'Disabled',
     sections: {
       stations: { title: 'Stations', description: 'Charging points, their power, connectors and temperature limits.', add: 'Add station' },
       locations: { title: 'Locations', description: 'Places where the stations are installed.', add: 'Add location' },

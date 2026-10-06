@@ -14,6 +14,8 @@ const AlarmsPage = lazy(() => import('./pages/AlarmsPage'));
 const StationDetailPage = lazy(() => import('./pages/StationDetailPage'));
 const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
 const AdminHomePage = lazy(() => import('./pages/admin/AdminHomePage'));
+const StationsAdmin = lazy(() => import('./pages/admin/AdminSections').then((module) => ({ default: module.StationsAdmin })));
+const LocationsAdmin = lazy(() => import('./pages/admin/AdminSections').then((module) => ({ default: module.LocationsAdmin })));
 
 export const routes = [
   {
@@ -35,6 +37,8 @@ export const routes = [
         element: <RequireRole role="admin"><AdminLayout /></RequireRole>,
         children: [
           { index: true, element: <AdminHomePage /> },
+          { path: 'stations', element: <StationsAdmin /> },
+          { path: 'locations', element: <LocationsAdmin /> },
         ],
       },
       { path: '*', element: <NotFoundPage /> },

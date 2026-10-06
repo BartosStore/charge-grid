@@ -166,6 +166,13 @@ const cs = {
     inMemory: 'Změny platí do obnovení stránky',
     home: 'Rozcestník',
     manage: 'Spravovat',
+    saved: 'Uloženo',
+    deleted: 'Smazáno',
+    saveError: 'Uložení se nezdařilo.',
+    confirmDeleteTitle: 'Opravdu smazat?',
+    confirmDelete: 'Položka „{{name}}" bude trvale odstraněna.',
+    enabled: 'V provozu',
+    disabled: 'Vypnuto',
     sections: {
       stations: { title: 'Stanice', description: 'Nabíjecí body, jejich výkon, konektory a teplotní limity.', add: 'Přidat stanici' },
       locations: { title: 'Lokality', description: 'Místa, kde jsou stanice nainstalovány.', add: 'Přidat lokalitu' },
