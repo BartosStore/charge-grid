@@ -1,6 +1,6 @@
 import KeyboardDoubleArrowLeftRounded from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
 import KeyboardDoubleArrowRightRounded from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
-import { Box, ButtonBase, Divider, Stack, Tooltip, Typography } from '@mui/material';
+import { Badge, Box, ButtonBase, Divider, Stack, Tooltip, Typography } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import { railToggled, selectRailExpanded } from '../../store/uiSlice';
 import { brand } from '../../theme/theme';
 import { Logo } from './Logo';
-import { NAV_ITEMS, RAIL_WIDTH } from './navigation';
+import { NAV_ITEMS, RAIL_WIDTH, useOpenAlarmCount } from './navigation';
 
 interface RailItemProps {
   to: string;
@@ -63,6 +63,7 @@ export function NavRail() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const expanded = useAppSelector(selectRailExpanded);
+  const openAlarms = useOpenAlarmCount();
 
   return (
     <Box
@@ -95,7 +96,9 @@ export function NavRail() {
             end={item.path === '/'}
             label={t(`nav.${item.key}`)}
             expanded={expanded}
-            icon={item.icon}
+            icon={item.key === 'alarms' ? (
+              <Badge badgeContent={openAlarms} color="error" max={99}>{item.icon}</Badge>
+            ) : item.icon}
           />
         ))}
       </Stack>

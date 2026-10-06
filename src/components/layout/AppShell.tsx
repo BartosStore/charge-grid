@@ -1,16 +1,17 @@
-import { BottomNavigation, BottomNavigationAction, Box, CircularProgress, Paper } from '@mui/material';
+import { Badge, BottomNavigation, BottomNavigationAction, Box, CircularProgress, Paper } from '@mui/material';
 import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Outlet, useLocation } from 'react-router';
 import { useAppSelector } from '../../store/store';
 import { selectRailExpanded } from '../../store/uiSlice';
-import { NAV_ITEMS, RAIL_WIDTH } from './navigation';
+import { NAV_ITEMS, RAIL_WIDTH, useOpenAlarmCount } from './navigation';
 import { NavRail } from './NavRail';
 import { TopBar } from './TopBar';
 
 function MobileNavigation() {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const openAlarms = useOpenAlarmCount();
   const active = NAV_ITEMS.find((item) => item.path !== '/' && pathname.startsWith(item.path))?.path ?? (pathname === '/' ? '/' : false);
 
   return (
@@ -26,7 +27,7 @@ function MobileNavigation() {
             component={Link}
             to={item.path}
             label={t(`nav.${item.key}`)}
-            icon={item.icon}
+            icon={item.key === 'alarms' ? <Badge badgeContent={openAlarms} color="error">{item.icon}</Badge> : item.icon}
             sx={{ minWidth: 0, px: 0.5 }}
           />
         ))}

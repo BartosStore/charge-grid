@@ -12,6 +12,13 @@ const cs = {
   status: { charging: 'Nabíjí', available: 'Volná', reserved: 'Rezervace', fault: 'Porucha', offline: 'Offline' },
   severity: { critical: 'Kritický', warning: 'Varování', info: 'Info' },
   role: { admin: 'Administrátor', operator: 'Operátor', viewer: 'Čtenář' },
+  alarmCode: {
+    E_OVERTEMP: 'Přehřátí konektoru',
+    E_COMM_LOST: 'Ztráta komunikace s vozidlem',
+    E_RCD_TRIP: 'Vybavení proudového chrániče',
+    E_GROUND_FAULT: 'Chyba uzemnění',
+    W_OFFLINE: 'Stanice nedostupná',
+  },
   range: { '24h': '24 h', '7d': '7 dní', '30d': '30 dní' },
   common: {
     from: 'Od', to: 'Do', all: 'Vše', noData: 'Žádná data', edit: 'Upravit', delete: 'Smazat', cancel: 'Zrušit', save: 'Uložit',
@@ -142,6 +149,15 @@ const cs = {
     rankingHint: 'Top {{count}} podle podílu času nabíjení',
     availabilityTimeline: 'Časová osa dostupnosti',
     availabilityTimelineHint: 'Kliknutím na řádek otevřete detail stanice. Kolečkem myši přiblížíte.',
+  },
+  alarms: {
+    title: 'Alarmy',
+    subtitle: 'Poruchy a výpadky stanic. Operátor je potvrzuje po prověření.',
+    tabs: { active: 'K řešení', history: 'Historie' },
+    ongoing: 'Probíhá',
+    acknowledge: 'Potvrdit',
+    noActive: 'Žádné alarmy k řešení 🎉',
+    readOnly: 'Jako čtenář nemůžete alarmy potvrzovat.',
   },
 };
 

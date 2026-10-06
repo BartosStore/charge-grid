@@ -1,9 +1,6 @@
-import { Typography } from '@mui/material';
 import { lazy, Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
 import { createBrowserRouter } from 'react-router';
 import { AppShell, PageFallback } from './components/layout/AppShell';
-import type { NavItem } from './components/layout/navigation';
 import { RequireAuth } from './components/layout/RequireAuth';
 import { NotFoundPage } from './pages/ErrorPages';
 
@@ -13,13 +10,8 @@ const OverviewPage = lazy(() => import('./pages/overview/OverviewPage'));
 const LivePage = lazy(() => import('./pages/LivePage'));
 const HistoryPage = lazy(() => import('./pages/HistoryPage'));
 const SessionsPage = lazy(() => import('./pages/sessions/SessionsPage'));
+const AlarmsPage = lazy(() => import('./pages/AlarmsPage'));
 const StationDetailPage = lazy(() => import('./pages/StationDetailPage'));
-
-/** Temporary content of a navigation section until its page is implemented. */
-function PagePlaceholder({ section }: { section: NavItem['key'] }) {
-  const { t } = useTranslation();
-  return <Typography variant="h4" component="h1">{t(`nav.${section}`)}</Typography>;
-}
 
 export const routes = [
   {
@@ -34,7 +26,7 @@ export const routes = [
       { path: 'live', element: <LivePage /> },
       { path: 'history', element: <HistoryPage /> },
       { path: 'sessions', element: <SessionsPage /> },
-      { path: 'alarms', element: <PagePlaceholder section="alarms" /> },
+      { path: 'alarms', element: <AlarmsPage /> },
       { path: 'stations/:stationId', element: <StationDetailPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

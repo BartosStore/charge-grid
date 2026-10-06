@@ -16,6 +16,13 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
   status: { charging: 'Charging', available: 'Available', reserved: 'Reserved', fault: 'Fault', offline: 'Offline' },
   severity: { critical: 'Critical', warning: 'Warning', info: 'Info' },
   role: { admin: 'Administrator', operator: 'Operator', viewer: 'Viewer' },
+  alarmCode: {
+    E_OVERTEMP: 'Connector overheating',
+    E_COMM_LOST: 'Vehicle communication lost',
+    E_RCD_TRIP: 'Residual current device tripped',
+    E_GROUND_FAULT: 'Ground fault',
+    W_OFFLINE: 'Station unreachable',
+  },
   range: { '24h': '24 h', '7d': '7 days', '30d': '30 days' },
   common: {
     from: 'From', to: 'To', all: 'All', noData: 'No data', edit: 'Edit', delete: 'Delete', cancel: 'Cancel', save: 'Save',
@@ -143,6 +150,15 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
     rankingHint: 'Top {{count}} by share of charging time',
     availabilityTimeline: 'Availability timeline',
     availabilityTimelineHint: 'Click a row to open the station. Use the mouse wheel to zoom.',
+  },
+  alarms: {
+    title: 'Alarms',
+    subtitle: 'Station faults and outages. Operators acknowledge them after investigation.',
+    tabs: { active: 'To resolve', history: 'History' },
+    ongoing: 'Ongoing',
+    acknowledge: 'Acknowledge',
+    noActive: 'Nothing to resolve 🎉',
+    readOnly: 'As a viewer you cannot acknowledge alarms.',
   },
 };
 

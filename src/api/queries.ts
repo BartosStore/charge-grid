@@ -1,4 +1,4 @@
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiFetch } from './client';
 import type {
   Alarm, ChargingSession, Location, Sample, Station, Statistics, Tariff, TimelineSegment,
@@ -76,3 +76,11 @@ export const useAlarms = (filter: Filter & { active?: boolean }) =>
     placeholderData: keepPreviousData,
     refetchInterval: 15_000,
   });
+
+export function useAcknowledgeAlarm() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (alarmId: string) => apiFetch<void>(`/alarms/${alarmId}/ack`, { method: 'POST' }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.alarms }),
+  });
+}
