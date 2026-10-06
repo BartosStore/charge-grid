@@ -1,10 +1,31 @@
 const cs = {
+  role: { admin: 'Administrátor', operator: 'Operátor', viewer: 'Čtenář' },
   topbar: {
+    logout: 'Odhlásit se',
     language: 'Jazyk',
     theme: 'Přepnout světlý/tmavý režim',
   },
   login: {
     heroTitle: 'Každá kilowatthodina pod kontrolou.',
+    heroText: 'Sledujte síť nabíjecích stanic v reálném čase, analyzujte historii provozu a reagujte na poruchy dřív, než si jich všimnou řidiči.',
+    stats: {
+      stations: { value: '24', label: 'stanic' },
+      locations: { value: '6', label: 'lokalit' },
+      interval: { value: '2 s', label: 'živá data' },
+    },
+    title: 'Přihlášení',
+    subtitle: 'Vítejte zpět. Přihlaste se do dispečinku ChargeGrid.',
+    username: 'Uživatelské jméno',
+    password: 'Heslo',
+    togglePassword: 'Zobrazit heslo',
+    submit: 'Přihlásit se',
+    demoAccounts: 'Demo účty',
+    demoHint: 'Heslo je stejné jako uživatelské jméno. Všechna data jsou smyšlená a generovaná v prohlížeči.',
+    errors: {
+      invalidCredentials: 'Nesprávné jméno nebo heslo.',
+      userInactive: 'Účet je deaktivován.',
+      generic: 'Přihlášení se nezdařilo. Zkuste to prosím znovu.',
+    },
   },
 };
 
