@@ -100,6 +100,15 @@ const cs = {
     maxTemperature: 'Teplotní limit (°C)', city: 'Město', address: 'Adresa', pricePerKwh: 'Cena za kWh',
     pricePerMinute: 'Cena za minutu', username: 'Uživatel', email: 'E-mail', role: 'Role',
   },
+  sessions: {
+    title: 'Nabíjecí relace',
+    subtitle: 'Dokončená nabíjení včetně spotřebované energie a ceny.',
+    count: 'Počet relací',
+    energy: 'Dodaná energie',
+    revenue: 'Tržby',
+    averageDuration: 'Průměrná délka',
+    tableTitle: 'Seznam relací',
+  },
   history: {
     title: 'Historie a analýzy',
     subtitle: 'Provoz sítě ve zvoleném období.',

@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { apiFetch } from './client';
-import type { Alarm, Location, Station, Statistics, TimelineSegment } from './types';
+import type { Alarm, ChargingSession, Location, Station, Statistics, TimelineSegment } from './types';
 
 export interface TimeRange {
   from: number;
@@ -32,6 +32,13 @@ export const useTimeline = (filter: Filter) =>
   useQuery({
     queryKey: ['timeline', 'all', filter],
     queryFn: () => apiFetch<TimelineSegment[]>('/timeline', { query: { ...filter } }),
+    placeholderData: keepPreviousData,
+  });
+
+export const useSessions = (filter: Filter) =>
+  useQuery({
+    queryKey: ['sessions', filter],
+    queryFn: () => apiFetch<ChargingSession[]>('/sessions', { query: { ...filter } }),
     placeholderData: keepPreviousData,
   });
 

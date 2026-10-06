@@ -102,6 +102,15 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
     maxTemperature: 'Temperature limit (°C)', city: 'City', address: 'Address', pricePerKwh: 'Price per kWh',
     pricePerMinute: 'Price per minute', username: 'Username', email: 'E-mail', role: 'Role',
   },
+  sessions: {
+    title: 'Charging sessions',
+    subtitle: 'Finished charging sessions with delivered energy and price.',
+    count: 'Sessions',
+    energy: 'Energy delivered',
+    revenue: 'Revenue',
+    averageDuration: 'Average duration',
+    tableTitle: 'Session list',
+  },
   history: {
     title: 'History & analytics',
     subtitle: 'Network operation in the selected period.',
