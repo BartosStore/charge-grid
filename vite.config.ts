@@ -3,6 +3,8 @@ import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // GitHub Pages serves the app from /<repo>/ – set VITE_BASE=/chargegrid/ when deploying there.
+  base: process.env.VITE_BASE ?? '/',
   plugins: [react()],
   // MUI, ECharts and the in-browser mock backend are big by nature; pages are lazy-loaded chunks.
   build: { chunkSizeWarningLimit: 900 },
