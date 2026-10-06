@@ -1,6 +1,8 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { apiFetch } from './client';
-import type { Alarm, ChargingSession, Location, Station, Statistics, TimelineSegment } from './types';
+import type {
+  Alarm, ChargingSession, Location, Sample, Station, Statistics, Tariff, TimelineSegment,
+} from './types';
 
 export interface TimeRange {
   from: number;
@@ -14,6 +16,7 @@ interface Filter extends TimeRange {
 
 export const queryKeys = {
   locations: ['locations'] as const,
+  tariffs: ['tariffs'] as const,
   stations: ['stations'] as const,
   alarms: ['alarms'] as const,
 };
@@ -23,10 +26,27 @@ export const queryKeys = {
 export const useLocations = () =>
   useQuery({ queryKey: queryKeys.locations, queryFn: () => apiFetch<Location[]>('/locations'), staleTime: 60_000 });
 
+export const useTariffs = () =>
+  useQuery({ queryKey: queryKeys.tariffs, queryFn: () => apiFetch<Tariff[]>('/tariffs'), staleTime: 60_000 });
+
 export const useStations = () =>
   useQuery({ queryKey: queryKeys.stations, queryFn: () => apiFetch<Station[]>('/stations'), staleTime: 60_000 });
 
 /* ------------------------------------------------------------ time series */
+
+export const useStationTimeline = (stationId: string, range: TimeRange) =>
+  useQuery({
+    queryKey: ['timeline', stationId, range],
+    queryFn: () => apiFetch<TimelineSegment[]>(`/stations/${stationId}/timeline`, { query: { ...range } }),
+    placeholderData: keepPreviousData,
+  });
+
+export const useStationSamples = (stationId: string, range: TimeRange) =>
+  useQuery({
+    queryKey: ['samples', stationId, range],
+    queryFn: () => apiFetch<Sample[]>(`/stations/${stationId}/samples`, { query: { ...range } }),
+    placeholderData: keepPreviousData,
+  });
 
 export const useTimeline = (filter: Filter) =>
   useQuery({

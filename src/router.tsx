@@ -13,6 +13,7 @@ const OverviewPage = lazy(() => import('./pages/overview/OverviewPage'));
 const LivePage = lazy(() => import('./pages/LivePage'));
 const HistoryPage = lazy(() => import('./pages/HistoryPage'));
 const SessionsPage = lazy(() => import('./pages/sessions/SessionsPage'));
+const StationDetailPage = lazy(() => import('./pages/StationDetailPage'));
 
 /** Temporary content of a navigation section until its page is implemented. */
 function PagePlaceholder({ section }: { section: NavItem['key'] }) {
@@ -34,6 +35,7 @@ export const routes = [
       { path: 'history', element: <HistoryPage /> },
       { path: 'sessions', element: <SessionsPage /> },
       { path: 'alarms', element: <PagePlaceholder section="alarms" /> },
+      { path: 'stations/:stationId', element: <StationDetailPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
