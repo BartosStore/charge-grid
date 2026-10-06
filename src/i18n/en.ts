@@ -83,6 +83,24 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
       hot: 'Temperature is close to the {{max}} °C limit',
     },
   },
+  live: {
+    title: 'Live data',
+    subtitle: 'Station telemetry streamed over WebSocket every 2 seconds.',
+    chartTitle: 'Last 15 minutes',
+    chartSubtitle: 'History from the REST API seamlessly continues with the live stream.',
+    stations: 'Stations (max {{max}})',
+    tableTitle: 'All stations',
+    threshold: 'Limit',
+    metrics: { powerKw: 'Power', temperatureC: 'Temperature', voltageV: 'Voltage' },
+  },
+  columns: {
+    code: 'Code', station: 'Station', location: 'Location', status: 'Status', energy: 'Energy', duration: 'Duration',
+    startedAt: 'Started', cost: 'Price', idTag: 'ID tag', severity: 'Severity', alarm: 'Alarm',
+    raisedAt: 'Raised', clearedAt: 'Cleared', acknowledged: 'Acknowledged', name: 'Name', connector: 'Connector',
+    maxPower: 'Max power', tariff: 'Tariff', commissioned: 'Commissioned', state: 'State',
+    maxTemperature: 'Temperature limit (°C)', city: 'City', address: 'Address', pricePerKwh: 'Price per kWh',
+    pricePerMinute: 'Price per minute', username: 'Username', email: 'E-mail', role: 'Role',
+  },
 };
 
 export default en;

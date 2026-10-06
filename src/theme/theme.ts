@@ -24,6 +24,9 @@ export const severityColors: Record<AlarmSeverity, string> = {
   info: '#3B82F6',
 };
 
+/** Categorical palette for series such as locations. */
+export const seriesColors = ['#5B4CF0', '#14B8A6', '#F97316', '#EC4899', '#84CC16', '#0EA5E9', '#A855F7', '#EAB308'];
+
 export const themeOptions: ThemeOptions = {
   cssVariables: { colorSchemeSelector: 'data' },
   colorSchemes: {

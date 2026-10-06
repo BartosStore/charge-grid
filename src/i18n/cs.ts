@@ -81,6 +81,24 @@ const cs = {
       hot: 'Teplota se blíží limitu {{max}} °C',
     },
   },
+  live: {
+    title: 'Živá data',
+    subtitle: 'Telemetrie stanic streamovaná přes WebSocket každé 2 sekundy.',
+    chartTitle: 'Posledních 15 minut',
+    chartSubtitle: 'Historie z REST API plynule navazuje na živý stream.',
+    stations: 'Stanice (max. {{max}})',
+    tableTitle: 'Všechny stanice',
+    threshold: 'Limit',
+    metrics: { powerKw: 'Výkon', temperatureC: 'Teplota', voltageV: 'Napětí' },
+  },
+  columns: {
+    code: 'Kód', station: 'Stanice', location: 'Lokalita', status: 'Stav', energy: 'Energie', duration: 'Trvání',
+    startedAt: 'Začátek', cost: 'Cena', idTag: 'Identifikátor', severity: 'Závažnost', alarm: 'Alarm',
+    raisedAt: 'Vznik', clearedAt: 'Konec', acknowledged: 'Potvrzení', name: 'Název', connector: 'Konektor',
+    maxPower: 'Max. výkon', tariff: 'Tarif', commissioned: 'Uvedení do provozu', state: 'Stav',
+    maxTemperature: 'Teplotní limit (°C)', city: 'Město', address: 'Adresa', pricePerKwh: 'Cena za kWh',
+    pricePerMinute: 'Cena za minutu', username: 'Uživatel', email: 'E-mail', role: 'Role',
+  },
 };
 
 export default cs;

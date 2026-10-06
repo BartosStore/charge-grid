@@ -3,13 +3,14 @@ import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createBrowserRouter } from 'react-router';
 import { AppShell, PageFallback } from './components/layout/AppShell';
-import { NAV_ITEMS, type NavItem } from './components/layout/navigation';
+import type { NavItem } from './components/layout/navigation';
 import { RequireAuth } from './components/layout/RequireAuth';
 import { NotFoundPage } from './pages/ErrorPages';
 
 // Every page is its own chunk, loaded on first visit.
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const OverviewPage = lazy(() => import('./pages/overview/OverviewPage'));
+const LivePage = lazy(() => import('./pages/LivePage'));
 
 /** Temporary content of a navigation section until its page is implemented. */
 function PagePlaceholder({ section }: { section: NavItem['key'] }) {
@@ -26,9 +27,11 @@ export const routes = [
     path: '/',
     element: <RequireAuth><AppShell /></RequireAuth>,
     children: [
-      ...NAV_ITEMS.map((item) => (item.path === '/'
-        ? { index: true, element: <OverviewPage /> }
-        : { path: item.path.slice(1), element: <PagePlaceholder section={item.key} /> })),
+      { index: true, element: <OverviewPage /> },
+      { path: 'live', element: <LivePage /> },
+      { path: 'history', element: <PagePlaceholder section="history" /> },
+      { path: 'sessions', element: <PagePlaceholder section="sessions" /> },
+      { path: 'alarms', element: <PagePlaceholder section="alarms" /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

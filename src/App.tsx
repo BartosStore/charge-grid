@@ -1,5 +1,6 @@
 import { CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
 import { csCZ as coreCs, enUS as coreEn } from '@mui/material/locale';
+import { csCZ as gridCs, enUS as gridEn } from '@mui/x-data-grid/locales';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { Provider } from 'react-redux';
@@ -26,7 +27,10 @@ const globalStyles = (
 
 function ThemedApp() {
   const language = useAppSelector(selectLanguage);
-  const theme = useMemo(() => (language === 'en' ? createAppTheme(coreEn) : createAppTheme(coreCs)), [language]);
+  const theme = useMemo(
+    () => (language === 'en' ? createAppTheme(coreEn, gridEn) : createAppTheme(coreCs, gridCs)),
+    [language],
+  );
   const [queryClient] = useState(() => new QueryClient({
     defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } },
   }));
