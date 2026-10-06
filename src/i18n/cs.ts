@@ -12,6 +12,9 @@ const cs = {
   status: { charging: 'Nabíjí', available: 'Volná', reserved: 'Rezervace', fault: 'Porucha', offline: 'Offline' },
   severity: { critical: 'Kritický', warning: 'Varování', info: 'Info' },
   role: { admin: 'Administrátor', operator: 'Operátor', viewer: 'Čtenář' },
+  common: {
+    from: 'Od', to: 'Do', all: 'Vše', noData: 'Žádná data', edit: 'Upravit', delete: 'Smazat', cancel: 'Zrušit', save: 'Uložit',
+  },
   topbar: {
     lastUpdate: 'Poslední aktualizace {{time}}',
     waiting: 'Čekám na živá data…',
@@ -50,6 +53,32 @@ const cs = {
       invalidCredentials: 'Nesprávné jméno nebo heslo.',
       userInactive: 'Účet je deaktivován.',
       generic: 'Přihlášení se nezdařilo. Zkuste to prosím znovu.',
+    },
+  },
+  overview: {
+    title: 'Přehled sítě',
+    subtitle: 'Aktuální stav všech stanic, aktualizováno v reálném čase.',
+    kpi: {
+      online: 'Stanice online',
+      charging: 'Právě nabíjí',
+      power: 'Odběr sítě',
+      energyToday: 'Energie dnes',
+      sessionsToday_one: '{{count}} dokončená relace',
+      sessionsToday_few: '{{count}} dokončené relace',
+      sessionsToday_other: '{{count}} dokončených relací',
+      alarms: 'Nepotvrzené alarmy',
+      faulted_one: '{{count}} stanice v poruše',
+      faulted_few: '{{count}} stanice v poruše',
+      faulted_other: '{{count}} stanic v poruše',
+    },
+    search: 'Hledat stanici nebo lokalitu',
+    noStations: 'Filtru neodpovídá žádná stanice.',
+    card: {
+      load: 'Vytížení výkonu',
+      session: 'Relace',
+      duration: 'Trvání',
+      temperature: 'Teplota',
+      hot: 'Teplota se blíží limitu {{max}} °C',
     },
   },
 };

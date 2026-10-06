@@ -16,6 +16,9 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
   status: { charging: 'Charging', available: 'Available', reserved: 'Reserved', fault: 'Fault', offline: 'Offline' },
   severity: { critical: 'Critical', warning: 'Warning', info: 'Info' },
   role: { admin: 'Administrator', operator: 'Operator', viewer: 'Viewer' },
+  common: {
+    from: 'From', to: 'To', all: 'All', noData: 'No data', edit: 'Edit', delete: 'Delete', cancel: 'Cancel', save: 'Save',
+  },
   topbar: {
     lastUpdate: 'Last update {{time}}',
     waiting: 'Waiting for live data…',
@@ -54,6 +57,30 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
       invalidCredentials: 'Wrong username or password.',
       userInactive: 'This account is deactivated.',
       generic: 'Sign in failed. Please try again.',
+    },
+  },
+  overview: {
+    title: 'Network overview',
+    subtitle: 'Current state of all stations, updated in real time.',
+    kpi: {
+      online: 'Stations online',
+      charging: 'Charging now',
+      power: 'Grid load',
+      energyToday: 'Energy today',
+      sessionsToday_one: '{{count}} finished session',
+      sessionsToday_other: '{{count}} finished sessions',
+      alarms: 'Unacknowledged alarms',
+      faulted_one: '{{count}} station in fault',
+      faulted_other: '{{count}} stations in fault',
+    },
+    search: 'Search station or location',
+    noStations: 'No station matches the filter.',
+    card: {
+      load: 'Power utilisation',
+      session: 'Session',
+      duration: 'Duration',
+      temperature: 'Temperature',
+      hot: 'Temperature is close to the {{max}} °C limit',
     },
   },
 };
