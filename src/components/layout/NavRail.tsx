@@ -1,10 +1,12 @@
 import KeyboardDoubleArrowLeftRounded from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
 import KeyboardDoubleArrowRightRounded from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import TuneRounded from '@mui/icons-material/TuneRounded';
 import { Badge, Box, ButtonBase, Divider, Stack, Tooltip, Typography } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
+import { hasRole, selectUser } from '../../store/authSlice';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { railToggled, selectRailExpanded } from '../../store/uiSlice';
 import { brand } from '../../theme/theme';
@@ -63,6 +65,7 @@ export function NavRail() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const expanded = useAppSelector(selectRailExpanded);
+  const user = useAppSelector(selectUser);
   const openAlarms = useOpenAlarmCount();
 
   return (
@@ -104,6 +107,9 @@ export function NavRail() {
       </Stack>
 
       <Stack spacing={0.75}>
+        {hasRole(user, 'admin') && (
+          <RailItem to="/admin" icon={<TuneRounded />} label={t('nav.admin')} expanded={expanded} />
+        )}
         <Divider sx={{ borderColor: alpha('#fff', 0.08), mx: 2, my: 1 }} />
         <Tooltip title={expanded ? '' : t('nav.expand')} placement="right">
           <ButtonBase

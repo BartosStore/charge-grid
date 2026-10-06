@@ -10,6 +10,7 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
     history: 'History',
     sessions: 'Sessions',
     alarms: 'Alarms',
+    admin: 'Administration',
     expand: 'Expand menu',
     collapse: 'Collapse menu',
   },
@@ -159,6 +160,19 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
     acknowledge: 'Acknowledge',
     noActive: 'Nothing to resolve 🎉',
     readOnly: 'As a viewer you cannot acknowledge alarms.',
+  },
+  admin: {
+    title: 'Administration',
+    subtitle: 'Manage stations, locations, tariffs and users.',
+    inMemory: 'Changes last until page reload',
+    home: 'Hub',
+    manage: 'Manage',
+    sections: {
+      stations: { title: 'Stations', description: 'Charging points, their power, connectors and temperature limits.', add: 'Add station' },
+      locations: { title: 'Locations', description: 'Places where the stations are installed.', add: 'Add location' },
+      tariffs: { title: 'Tariffs', description: 'Pricing for energy and time spent at the station.', add: 'Add tariff' },
+      users: { title: 'Users', description: 'Control room accounts and their roles.', add: 'Add user' },
+    },
   },
 };
 

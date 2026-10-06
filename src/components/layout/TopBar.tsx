@@ -3,6 +3,7 @@ import LightModeRounded from '@mui/icons-material/LightModeRounded';
 import LogoutRounded from '@mui/icons-material/LogoutRounded';
 import PlaceRounded from '@mui/icons-material/PlaceRounded';
 import TranslateRounded from '@mui/icons-material/TranslateRounded';
+import TuneRounded from '@mui/icons-material/TuneRounded';
 import {
   Avatar, Box, ButtonBase, Chip, Divider, IconButton, ListItemIcon, Menu, MenuItem, Select, Stack, Tooltip, Typography,
 } from '@mui/material';
@@ -13,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { useLocations } from '../../api/queries';
 import { useLiveFeed } from '../../live/liveFeed';
-import { loggedOut, selectUser } from '../../store/authSlice';
+import { hasRole, loggedOut, selectUser } from '../../store/authSlice';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { languageChanged, locationChanged, selectLanguage, selectLocationId } from '../../store/uiSlice';
 import { brand } from '../../theme/theme';
@@ -86,6 +87,12 @@ function UserMenu() {
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>{user.email}</Typography>
         </Box>
         <Divider />
+        {hasRole(user, 'admin') && (
+          <MenuItem onClick={() => { close(); navigate('/admin'); }}>
+            <ListItemIcon><TuneRounded fontSize="small" /></ListItemIcon>
+            {t('nav.admin')}
+          </MenuItem>
+        )}
         <MenuItem
           onClick={() => {
             close();

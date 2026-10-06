@@ -1,7 +1,7 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiFetch } from './client';
 import type {
-  Alarm, ChargingSession, Location, Sample, Station, Statistics, Tariff, TimelineSegment,
+  Alarm, ChargingSession, Location, Sample, Station, Statistics, Tariff, TimelineSegment, User,
 } from './types';
 
 export interface TimeRange {
@@ -18,6 +18,7 @@ export const queryKeys = {
   locations: ['locations'] as const,
   tariffs: ['tariffs'] as const,
   stations: ['stations'] as const,
+  users: ['users'] as const,
   alarms: ['alarms'] as const,
 };
 
@@ -31,6 +32,8 @@ export const useTariffs = () =>
 
 export const useStations = () =>
   useQuery({ queryKey: queryKeys.stations, queryFn: () => apiFetch<Station[]>('/stations'), staleTime: 60_000 });
+
+export const useUsers = () => useQuery({ queryKey: queryKeys.users, queryFn: () => apiFetch<User[]>('/users') });
 
 /* ------------------------------------------------------------ time series */
 

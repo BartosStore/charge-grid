@@ -6,6 +6,7 @@ const cs = {
     history: 'Historie',
     sessions: 'Relace',
     alarms: 'Alarmy',
+    admin: 'Administrace',
     expand: 'Rozbalit menu',
     collapse: 'Sbalit menu',
   },
@@ -158,6 +159,19 @@ const cs = {
     acknowledge: 'Potvrdit',
     noActive: 'Žádné alarmy k řešení 🎉',
     readOnly: 'Jako čtenář nemůžete alarmy potvrzovat.',
+  },
+  admin: {
+    title: 'Administrace',
+    subtitle: 'Správa stanic, lokalit, tarifů a uživatelů.',
+    inMemory: 'Změny platí do obnovení stránky',
+    home: 'Rozcestník',
+    manage: 'Spravovat',
+    sections: {
+      stations: { title: 'Stanice', description: 'Nabíjecí body, jejich výkon, konektory a teplotní limity.', add: 'Přidat stanici' },
+      locations: { title: 'Lokality', description: 'Místa, kde jsou stanice nainstalovány.', add: 'Přidat lokalitu' },
+      tariffs: { title: 'Tarify', description: 'Ceník za energii a za čas strávený u stanice.', add: 'Přidat tarif' },
+      users: { title: 'Uživatelé', description: 'Účty dispečinku a jejich role.', add: 'Přidat uživatele' },
+    },
   },
 };
 

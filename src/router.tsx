@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router';
 import { AppShell, PageFallback } from './components/layout/AppShell';
-import { RequireAuth } from './components/layout/RequireAuth';
+import { RequireAuth, RequireRole } from './components/layout/RequireAuth';
 import { NotFoundPage } from './pages/ErrorPages';
 
 // Every page is its own chunk, loaded on first visit.
@@ -12,6 +12,8 @@ const HistoryPage = lazy(() => import('./pages/HistoryPage'));
 const SessionsPage = lazy(() => import('./pages/sessions/SessionsPage'));
 const AlarmsPage = lazy(() => import('./pages/AlarmsPage'));
 const StationDetailPage = lazy(() => import('./pages/StationDetailPage'));
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
+const AdminHomePage = lazy(() => import('./pages/admin/AdminHomePage'));
 
 export const routes = [
   {
@@ -28,6 +30,13 @@ export const routes = [
       { path: 'sessions', element: <SessionsPage /> },
       { path: 'alarms', element: <AlarmsPage /> },
       { path: 'stations/:stationId', element: <StationDetailPage /> },
+      {
+        path: 'admin',
+        element: <RequireRole role="admin"><AdminLayout /></RequireRole>,
+        children: [
+          { index: true, element: <AdminHomePage /> },
+        ],
+      },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
