@@ -17,6 +17,9 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
   severity: { critical: 'Critical', warning: 'Warning', info: 'Info' },
   role: { admin: 'Administrator', operator: 'Operator', viewer: 'Viewer' },
   topbar: {
+    lastUpdate: 'Last update {{time}}',
+    waiting: 'Waiting for live data…',
+    connection: { open: 'LIVE', connecting: 'Connecting', closed: 'Offline' },
     userMenu: 'User menu',
     logout: 'Sign out',
     location: 'Location',

@@ -13,6 +13,11 @@ const globalStyles = (
   <GlobalStyles
     styles={{
       '@keyframes cg-pulse': { '0%, 100%': { opacity: 1 }, '50%': { opacity: 0.35 } },
+      '@keyframes cg-ring': {
+        '0%': { boxShadow: '0 0 0 0 rgba(34, 197, 94, 0.6)' },
+        '70%': { boxShadow: '0 0 0 8px rgba(34, 197, 94, 0)' },
+        '100%': { boxShadow: '0 0 0 0 rgba(34, 197, 94, 0)' },
+      },
       '@keyframes cg-flow': { to: { strokeDashoffset: -40 } },
       '@media (prefers-reduced-motion: reduce)': { '*': { animation: 'none !important', transition: 'none !important' } },
     }}

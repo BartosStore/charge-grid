@@ -1,7 +1,7 @@
-import { delay, http, HttpResponse, type DefaultBodyType, type PathParams } from 'msw';
-import { API_URL } from '../api/config';
-import type { Role, Station, User } from '../api/types';
-import { getAlarms, getSamples, getSessions, getStatistics, getTimeline, DAY } from './generators';
+import { delay, http, HttpResponse, ws, type DefaultBodyType, type PathParams } from 'msw';
+import { API_URL, LIVE_INTERVAL_MS, LIVE_URL } from '../api/config';
+import type { LiveMessage, Role, Station, User } from '../api/types';
+import { getAlarms, getLiveSnapshot, getSamples, getSessions, getStatistics, getTimeline, DAY } from './generators';
 import { db, HISTORY_DAYS, nextId } from './db';
 
 const api = (path: string) => `${API_URL}${path}`;
@@ -88,6 +88,8 @@ function crud<T extends { id: string }>(path: string, collection: () => T[], pre
 
 /* ----------------------------------------------------------------- handlers */
 
+const live = ws.link(LIVE_URL);
+
 export const handlers = [
   http.post<PathParams, { username: string; password: string }>(api('/auth/login'), async ({ request }) => {
     await delay(500);
@@ -171,5 +173,16 @@ export const handlers = [
     if (denied) return denied;
     db.acknowledgements.set(params.id, currentUser(request)!.username);
     return new HttpResponse(null, { status: 204 });
+  }),
+
+  live.addEventListener('connection', ({ client }) => {
+    const send = () => {
+      const now = Date.now();
+      const message: LiveMessage = { type: 'snapshot', data: db.stations.map((station) => getLiveSnapshot(station, now)) };
+      client.send(JSON.stringify(message));
+    };
+    send();
+    const timer = setInterval(send, LIVE_INTERVAL_MS);
+    client.addEventListener('close', () => clearInterval(timer));
   }),
 ];

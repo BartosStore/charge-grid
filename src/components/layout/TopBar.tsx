@@ -4,19 +4,49 @@ import LogoutRounded from '@mui/icons-material/LogoutRounded';
 import PlaceRounded from '@mui/icons-material/PlaceRounded';
 import TranslateRounded from '@mui/icons-material/TranslateRounded';
 import {
-  Avatar, Box, ButtonBase, Divider, IconButton, ListItemIcon, Menu, MenuItem, Select, Stack, Tooltip, Typography,
+  Avatar, Box, ButtonBase, Chip, Divider, IconButton, ListItemIcon, Menu, MenuItem, Select, Stack, Tooltip, Typography,
 } from '@mui/material';
-import { useColorScheme } from '@mui/material/styles';
+import { alpha, useColorScheme } from '@mui/material/styles';
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { useLocations } from '../../api/queries';
+import { useLiveFeed } from '../../live/liveFeed';
 import { loggedOut, selectUser } from '../../store/authSlice';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { languageChanged, locationChanged, selectLanguage, selectLocationId } from '../../store/uiSlice';
 import { brand } from '../../theme/theme';
+import { formatTime } from '../../utils/format';
 import { LogoMark } from './Logo';
+
+function LiveIndicator() {
+  const { t } = useTranslation();
+  const connection = useLiveFeed((state) => state.connection);
+  const lastUpdate = useLiveFeed((state) => state.lastUpdate);
+  const color = connection === 'open' ? '#22C55E' : connection === 'connecting' ? '#F59E0B' : '#94A3B8';
+
+  return (
+    <Tooltip title={lastUpdate ? t('topbar.lastUpdate', { time: formatTime(lastUpdate) }) : t('topbar.waiting')}>
+      <Chip
+        data-testid="live-indicator"
+        size="small"
+        label={t(`topbar.connection.${connection}`)}
+        icon={
+          <Box
+            component="span"
+            sx={{
+              width: 8, height: 8, borderRadius: '50%', bgcolor: color, ml: '8px !important',
+              boxShadow: `0 0 0 0 ${alpha(color, 0.6)}`,
+              animation: connection === 'open' ? 'cg-ring 2s infinite' : undefined,
+            }}
+          />
+        }
+        sx={{ fontWeight: 700, letterSpacing: '0.04em', bgcolor: alpha(color, 0.12), color }}
+      />
+    </Tooltip>
+  );
+}
 
 function UserMenu() {
   const { t } = useTranslation();
@@ -115,6 +145,7 @@ export function TopBar() {
           ))}
         </Select>
         <Box sx={{ flex: 1 }} />
+        <LiveIndicator />
         <Tooltip title={t('topbar.language')}>
           <IconButton onClick={toggleLanguage} aria-label={t('topbar.language')}>
             <TranslateRounded fontSize="small" />

@@ -7,7 +7,7 @@ import { startMockBackend } from './mocks/browser';
 import { store } from './store/store';
 
 async function bootstrap() {
-  // There is no real backend – MSW answers REST calls in the browser.
+  // There is no real backend – MSW answers REST calls and the WebSocket stream in the browser.
   await startMockBackend();
   await initI18n(store.getState().ui.language);
 

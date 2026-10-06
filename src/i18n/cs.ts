@@ -13,6 +13,9 @@ const cs = {
   severity: { critical: 'Kritický', warning: 'Varování', info: 'Info' },
   role: { admin: 'Administrátor', operator: 'Operátor', viewer: 'Čtenář' },
   topbar: {
+    lastUpdate: 'Poslední aktualizace {{time}}',
+    waiting: 'Čekám na živá data…',
+    connection: { open: 'LIVE', connecting: 'Připojuji', closed: 'Offline' },
     userMenu: 'Uživatelské menu',
     logout: 'Odhlásit se',
     location: 'Lokalita',
