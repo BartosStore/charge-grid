@@ -174,6 +174,8 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
     confirmDelete: '"{{name}}" will be permanently removed.',
     enabled: 'In service',
     disabled: 'Disabled',
+    active: 'Active',
+    inactive: 'Inactive',
     sections: {
       stations: { title: 'Stations', description: 'Charging points, their power, connectors and temperature limits.', add: 'Add station' },
       locations: { title: 'Locations', description: 'Places where the stations are installed.', add: 'Add location' },

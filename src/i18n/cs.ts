@@ -173,6 +173,8 @@ const cs = {
     confirmDelete: 'Položka „{{name}}" bude trvale odstraněna.',
     enabled: 'V provozu',
     disabled: 'Vypnuto',
+    active: 'Aktivní',
+    inactive: 'Neaktivní',
     sections: {
       stations: { title: 'Stanice', description: 'Nabíjecí body, jejich výkon, konektory a teplotní limity.', add: 'Přidat stanici' },
       locations: { title: 'Lokality', description: 'Místa, kde jsou stanice nainstalovány.', add: 'Přidat lokalitu' },

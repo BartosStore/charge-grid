@@ -16,6 +16,8 @@ const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
 const AdminHomePage = lazy(() => import('./pages/admin/AdminHomePage'));
 const StationsAdmin = lazy(() => import('./pages/admin/AdminSections').then((module) => ({ default: module.StationsAdmin })));
 const LocationsAdmin = lazy(() => import('./pages/admin/AdminSections').then((module) => ({ default: module.LocationsAdmin })));
+const TariffsAdmin = lazy(() => import('./pages/admin/AdminSections').then((module) => ({ default: module.TariffsAdmin })));
+const UsersAdmin = lazy(() => import('./pages/admin/AdminSections').then((module) => ({ default: module.UsersAdmin })));
 
 export const routes = [
   {
@@ -39,6 +41,8 @@ export const routes = [
           { index: true, element: <AdminHomePage /> },
           { path: 'stations', element: <StationsAdmin /> },
           { path: 'locations', element: <LocationsAdmin /> },
+          { path: 'tariffs', element: <TariffsAdmin /> },
+          { path: 'users', element: <UsersAdmin /> },
         ],
       },
       { path: '*', element: <NotFoundPage /> },

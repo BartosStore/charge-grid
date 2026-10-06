@@ -2,12 +2,13 @@ import { Chip } from '@mui/material';
 import type { GridColDef } from '@mui/x-data-grid';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { queryKeys, useLocations, useStations, useTariffs } from '../../api/queries';
-import type { ConnectorType, Location, Station } from '../../api/types';
-import { formatDate } from '../../utils/format';
+import { queryKeys, useLocations, useStations, useTariffs, useUsers } from '../../api/queries';
+import type { ConnectorType, Location, Role, Station, Tariff, User } from '../../api/types';
+import { formatDate, formatNumber } from '../../utils/format';
 import { CrudPage, type FieldDef } from './CrudPage';
 
 const CONNECTORS: ConnectorType[] = ['Type2', 'CCS', 'CHAdeMO'];
+const ROLES: Role[] = ['admin', 'operator', 'viewer'];
 
 const ActiveChip = ({ active, label }: { active: boolean; label: string }) => (
   <Chip size="small" label={label} color={active ? 'success' : 'default'} variant={active ? 'filled' : 'outlined'} />
@@ -94,6 +95,71 @@ export function LocationsAdmin() {
       addLabel={t('admin.sections.locations.add')}
       describe={(item) => item.name}
       emptyItem={{ name: '', city: '', address: '' }}
+    />
+  );
+}
+
+export function TariffsAdmin() {
+  const { t } = useTranslation();
+  const { data = [], isLoading } = useTariffs();
+
+  const columns = useMemo<GridColDef<Tariff>[]>(() => [
+    { field: 'name', headerName: t('columns.name'), flex: 1, minWidth: 200 },
+    { field: 'pricePerKwh', headerName: t('columns.pricePerKwh'), type: 'number', width: 160, valueFormatter: (value: number) => `${formatNumber(value, 2, 2)} Kč` },
+    { field: 'pricePerMinute', headerName: t('columns.pricePerMinute'), type: 'number', width: 160, valueFormatter: (value: number) => `${formatNumber(value, 2, 2)} Kč` },
+  ], [t]);
+
+  return (
+    <CrudPage<Tariff>
+      resource="tariffs"
+      queryKey={queryKeys.tariffs}
+      items={data}
+      loading={isLoading}
+      columns={columns}
+      fields={[
+        { name: 'name', label: t('columns.name'), required: true },
+        { name: 'pricePerKwh', label: t('columns.pricePerKwh'), type: 'number', required: true, min: 0, step: 0.1 },
+        { name: 'pricePerMinute', label: t('columns.pricePerMinute'), type: 'number', required: true, min: 0, step: 0.1 },
+      ]}
+      addLabel={t('admin.sections.tariffs.add')}
+      describe={(item) => item.name}
+      emptyItem={{ name: '', pricePerKwh: 9, pricePerMinute: 0 }}
+    />
+  );
+}
+
+export function UsersAdmin() {
+  const { t } = useTranslation();
+  const { data = [], isLoading } = useUsers();
+
+  const columns = useMemo<GridColDef<User>[]>(() => [
+    { field: 'username', headerName: t('columns.username'), width: 140 },
+    { field: 'name', headerName: t('columns.name'), flex: 1, minWidth: 180 },
+    { field: 'email', headerName: t('columns.email'), flex: 1, minWidth: 220 },
+    { field: 'role', headerName: t('columns.role'), width: 140, valueFormatter: (value: Role) => t(`role.${value}`) },
+    {
+      field: 'active', headerName: t('columns.state'), width: 120, type: 'boolean',
+      renderCell: ({ value }) => <ActiveChip active={value} label={value ? t('admin.active') : t('admin.inactive')} />,
+    },
+  ], [t]);
+
+  return (
+    <CrudPage<User>
+      resource="users"
+      queryKey={queryKeys.users}
+      items={data}
+      loading={isLoading}
+      columns={columns}
+      fields={[
+        { name: 'username', label: t('columns.username'), required: true },
+        { name: 'name', label: t('columns.name'), required: true },
+        { name: 'email', label: t('columns.email'), type: 'email' },
+        { name: 'role', label: t('columns.role'), type: 'select', required: true, options: ROLES.map((value) => ({ value, label: t(`role.${value}`) })) },
+        { name: 'active', label: t('admin.active'), type: 'switch' },
+      ]}
+      addLabel={t('admin.sections.users.add')}
+      describe={(item) => `${item.name} (${item.username})`}
+      emptyItem={{ username: '', name: '', email: '', role: 'viewer', active: true }}
     />
   );
 }
