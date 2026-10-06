@@ -13,6 +13,8 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
     expand: 'Expand menu',
     collapse: 'Collapse menu',
   },
+  status: { charging: 'Charging', available: 'Available', reserved: 'Reserved', fault: 'Fault', offline: 'Offline' },
+  severity: { critical: 'Critical', warning: 'Warning', info: 'Info' },
   role: { admin: 'Administrator', operator: 'Operator', viewer: 'Viewer' },
   topbar: {
     userMenu: 'User menu',

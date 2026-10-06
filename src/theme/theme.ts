@@ -1,4 +1,5 @@
 import { alpha, createTheme, type ThemeOptions } from '@mui/material/styles';
+import type { AlarmSeverity, StationStatus } from '../api/types';
 
 export const brand = {
   indigo: '#5B4CF0',
@@ -7,6 +8,20 @@ export const brand = {
   ink: '#0E1124',
   rail: '#12152B',
   railHover: '#1E2242',
+};
+
+export const statusColors: Record<StationStatus, string> = {
+  charging: '#3B82F6',
+  available: '#22C55E',
+  reserved: '#F59E0B',
+  fault: '#EF4444',
+  offline: '#94A3B8',
+};
+
+export const severityColors: Record<AlarmSeverity, string> = {
+  critical: '#EF4444',
+  warning: '#F59E0B',
+  info: '#3B82F6',
 };
 
 export const themeOptions: ThemeOptions = {

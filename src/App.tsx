@@ -12,6 +12,7 @@ import { createAppTheme } from './theme/theme';
 const globalStyles = (
   <GlobalStyles
     styles={{
+      '@keyframes cg-pulse': { '0%, 100%': { opacity: 1 }, '50%': { opacity: 0.35 } },
       '@keyframes cg-flow': { to: { strokeDashoffset: -40 } },
       '@media (prefers-reduced-motion: reduce)': { '*': { animation: 'none !important', transition: 'none !important' } },
     }}

@@ -9,6 +9,8 @@ const cs = {
     expand: 'Rozbalit menu',
     collapse: 'Sbalit menu',
   },
+  status: { charging: 'Nabíjí', available: 'Volná', reserved: 'Rezervace', fault: 'Porucha', offline: 'Offline' },
+  severity: { critical: 'Kritický', warning: 'Varování', info: 'Info' },
   role: { admin: 'Administrátor', operator: 'Operátor', viewer: 'Čtenář' },
   topbar: {
     userMenu: 'Uživatelské menu',
