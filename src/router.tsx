@@ -11,6 +11,7 @@ import { NotFoundPage } from './pages/ErrorPages';
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const OverviewPage = lazy(() => import('./pages/overview/OverviewPage'));
 const LivePage = lazy(() => import('./pages/LivePage'));
+const HistoryPage = lazy(() => import('./pages/HistoryPage'));
 
 /** Temporary content of a navigation section until its page is implemented. */
 function PagePlaceholder({ section }: { section: NavItem['key'] }) {
@@ -29,7 +30,7 @@ export const routes = [
     children: [
       { index: true, element: <OverviewPage /> },
       { path: 'live', element: <LivePage /> },
-      { path: 'history', element: <PagePlaceholder section="history" /> },
+      { path: 'history', element: <HistoryPage /> },
       { path: 'sessions', element: <PagePlaceholder section="sessions" /> },
       { path: 'alarms', element: <PagePlaceholder section="alarms" /> },
       { path: '*', element: <NotFoundPage /> },

@@ -12,6 +12,7 @@ const cs = {
   status: { charging: 'Nabíjí', available: 'Volná', reserved: 'Rezervace', fault: 'Porucha', offline: 'Offline' },
   severity: { critical: 'Kritický', warning: 'Varování', info: 'Info' },
   role: { admin: 'Administrátor', operator: 'Operátor', viewer: 'Čtenář' },
+  range: { '24h': '24 h', '7d': '7 dní', '30d': '30 dní' },
   common: {
     from: 'Od', to: 'Do', all: 'Vše', noData: 'Žádná data', edit: 'Upravit', delete: 'Smazat', cancel: 'Zrušit', save: 'Uložit',
   },
@@ -98,6 +99,20 @@ const cs = {
     maxPower: 'Max. výkon', tariff: 'Tarif', commissioned: 'Uvedení do provozu', state: 'Stav',
     maxTemperature: 'Teplotní limit (°C)', city: 'Město', address: 'Adresa', pricePerKwh: 'Cena za kWh',
     pricePerMinute: 'Cena za minutu', username: 'Uživatel', email: 'E-mail', role: 'Role',
+  },
+  history: {
+    title: 'Historie a analýzy',
+    subtitle: 'Provoz sítě ve zvoleném období.',
+    totalEnergy: 'Dodaná energie',
+    totalSessions: 'Relace',
+    revenue: 'Tržby',
+    availability: 'Průměrná dostupnost',
+    energyByDay: 'Energie po dnech',
+    energyByDayHint: 'Rozděleno podle lokalit',
+    ranking: 'Nejvytíženější stanice',
+    rankingHint: 'Top {{count}} podle podílu času nabíjení',
+    availabilityTimeline: 'Časová osa dostupnosti',
+    availabilityTimelineHint: 'Kliknutím na řádek otevřete detail stanice. Kolečkem myši přiblížíte.',
   },
 };
 

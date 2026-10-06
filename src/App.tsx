@@ -1,6 +1,9 @@
 import { CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
 import { csCZ as coreCs, enUS as coreEn } from '@mui/material/locale';
 import { csCZ as gridCs, enUS as gridEn } from '@mui/x-data-grid/locales';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { csCZ as pickersCs, enUS as pickersEn } from '@mui/x-date-pickers/locales';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { Provider } from 'react-redux';
@@ -28,7 +31,7 @@ const globalStyles = (
 function ThemedApp() {
   const language = useAppSelector(selectLanguage);
   const theme = useMemo(
-    () => (language === 'en' ? createAppTheme(coreEn, gridEn) : createAppTheme(coreCs, gridCs)),
+    () => (language === 'en' ? createAppTheme(coreEn, gridEn, pickersEn) : createAppTheme(coreCs, gridCs, pickersCs)),
     [language],
   );
   const [queryClient] = useState(() => new QueryClient({
@@ -40,9 +43,11 @@ function ThemedApp() {
     <ThemeProvider theme={theme} defaultMode="light">
       <CssBaseline enableColorScheme />
       {globalStyles}
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={language === 'en' ? 'en-gb' : 'cs'}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </LocalizationProvider>
     </ThemeProvider>
   );
 }

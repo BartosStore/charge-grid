@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { apiFetch } from './client';
-import type { Alarm, Location, Station, Statistics } from './types';
+import type { Alarm, Location, Station, Statistics, TimelineSegment } from './types';
 
 export interface TimeRange {
   from: number;
@@ -27,6 +27,13 @@ export const useStations = () =>
   useQuery({ queryKey: queryKeys.stations, queryFn: () => apiFetch<Station[]>('/stations'), staleTime: 60_000 });
 
 /* ------------------------------------------------------------ time series */
+
+export const useTimeline = (filter: Filter) =>
+  useQuery({
+    queryKey: ['timeline', 'all', filter],
+    queryFn: () => apiFetch<TimelineSegment[]>('/timeline', { query: { ...filter } }),
+    placeholderData: keepPreviousData,
+  });
 
 export const useStatistics = (filter: Filter) =>
   useQuery({

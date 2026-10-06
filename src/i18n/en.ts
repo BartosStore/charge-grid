@@ -16,6 +16,7 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
   status: { charging: 'Charging', available: 'Available', reserved: 'Reserved', fault: 'Fault', offline: 'Offline' },
   severity: { critical: 'Critical', warning: 'Warning', info: 'Info' },
   role: { admin: 'Administrator', operator: 'Operator', viewer: 'Viewer' },
+  range: { '24h': '24 h', '7d': '7 days', '30d': '30 days' },
   common: {
     from: 'From', to: 'To', all: 'All', noData: 'No data', edit: 'Edit', delete: 'Delete', cancel: 'Cancel', save: 'Save',
   },
@@ -100,6 +101,20 @@ const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
     maxPower: 'Max power', tariff: 'Tariff', commissioned: 'Commissioned', state: 'State',
     maxTemperature: 'Temperature limit (°C)', city: 'City', address: 'Address', pricePerKwh: 'Price per kWh',
     pricePerMinute: 'Price per minute', username: 'Username', email: 'E-mail', role: 'Role',
+  },
+  history: {
+    title: 'History & analytics',
+    subtitle: 'Network operation in the selected period.',
+    totalEnergy: 'Energy delivered',
+    totalSessions: 'Sessions',
+    revenue: 'Revenue',
+    availability: 'Average availability',
+    energyByDay: 'Energy per day',
+    energyByDayHint: 'Split by location',
+    ranking: 'Busiest stations',
+    rankingHint: 'Top {{count}} by share of charging time',
+    availabilityTimeline: 'Availability timeline',
+    availabilityTimelineHint: 'Click a row to open the station. Use the mouse wheel to zoom.',
   },
 };
 
