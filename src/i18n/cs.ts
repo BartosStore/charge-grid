@@ -1,9 +1,29 @@
 const cs = {
+  nav: {
+    main: 'Hlavní navigace',
+    overview: 'Přehled',
+    live: 'Živá data',
+    history: 'Historie',
+    sessions: 'Relace',
+    alarms: 'Alarmy',
+    expand: 'Rozbalit menu',
+    collapse: 'Sbalit menu',
+  },
   role: { admin: 'Administrátor', operator: 'Operátor', viewer: 'Čtenář' },
   topbar: {
+    userMenu: 'Uživatelské menu',
     logout: 'Odhlásit se',
+    location: 'Lokalita',
+    allLocations: 'Všechny lokality',
     language: 'Jazyk',
     theme: 'Přepnout světlý/tmavý režim',
+  },
+  errors: {
+    backHome: 'Zpět na přehled',
+    notFoundTitle: 'Stránka nenalezena',
+    notFoundText: 'Tahle adresa nikam nevede. Možná byla stanice odpojena.',
+    forbiddenTitle: 'Přístup odepřen',
+    forbiddenText: 'Pro tuto sekci nemáte dostatečná oprávnění.',
   },
   login: {
     heroTitle: 'Každá kilowatthodina pod kontrolou.',

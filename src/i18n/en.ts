@@ -3,11 +3,31 @@ import type { Translation } from './cs';
 type DeepPartialStrings<T> = { [K in keyof T]?: T[K] extends string ? string : DeepPartialStrings<T[K]> };
 
 const en: DeepPartialStrings<Translation> & Record<string, unknown> = {
+  nav: {
+    main: 'Main navigation',
+    overview: 'Overview',
+    live: 'Live data',
+    history: 'History',
+    sessions: 'Sessions',
+    alarms: 'Alarms',
+    expand: 'Expand menu',
+    collapse: 'Collapse menu',
+  },
   role: { admin: 'Administrator', operator: 'Operator', viewer: 'Viewer' },
   topbar: {
+    userMenu: 'User menu',
     logout: 'Sign out',
+    location: 'Location',
+    allLocations: 'All locations',
     language: 'Language',
     theme: 'Toggle light/dark mode',
+  },
+  errors: {
+    backHome: 'Back to overview',
+    notFoundTitle: 'Page not found',
+    notFoundText: 'This address leads nowhere. Maybe the station was unplugged.',
+    forbiddenTitle: 'Access denied',
+    forbiddenText: 'You do not have permission to view this section.',
   },
   login: {
     heroTitle: 'Every kilowatt-hour under control.',
